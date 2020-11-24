@@ -1,0 +1,37 @@
+<ion-header>
+  <div class="login-header ion-padding">
+    <img  class="logo-img"  src="assets/icon/corazon.png">
+  </div>
+</ion-header>
+<ion-content padding>
+
+  <div class="center">
+      <div linespace></div><div linespace></div> 
+      <div heading-column-lr>
+          <h1 big-heading>Log in to your account</h1>
+          
+      </div>
+    
+      <ion-label small-heading>
+        ¡Let's go!
+      </ion-label>
+      <div linespace></div>
+      <ion-item transparent>
+        <img  icon-small  src="assets/icon/usuario.png" >
+        <ion-input [(ngModel)]="username" placeholder="User" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparent>
+        <img  icon-small  src="assets/icon/candado.png" >
+        <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
+      </ion-item>
+      
+
+      <div linespace2></div>
+      <ion-button padding color = "danger"  shape="round" fill="solid" size="large" expand="block"
+      (click)="prosesLogin()">Get in</ion-button>
+      <ion-label class="ion-text-center">If you don't have an account, <span class="link-button" (click)="formRegister()">Sing up</span>
+      </ion-label>
+
+  </div>
+
+</ion-content>

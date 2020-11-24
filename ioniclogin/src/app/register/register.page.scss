@@ -1,0 +1,41 @@
+[transparent]{
+    --background: transparent;
+}
+[linespace]{
+    height: 35px;
+}
+[big-heading]{
+  
+    font-family: "Montserrat-Regular" !important;
+    font-size: 20px !important;
+    color:var(--ion-color-primary-contrast);
+}
+ion-input{
+    font-family: "Montserrat-Regular" !important;
+    --color: #000;
+    --padding-bottom: 15px;
+    --padding-top: 15px;
+    --padding-start: 5px;
+    font-size: 17px;
+    text-indent: 1px;
+    padding-left: 10px !important;
+}
+.logo-img{
+    
+    display: block;
+    width: 64px;
+    margin: 0 auto;
+    text-align: center;
+   
+}
+ion-button{
+    font-family: "Montserrat-Regular" !important;
+}
+ion-label{
+    font-family: "Montserrat-Regular" !important;
+    font-size: 15px;
+}
+ion-select{
+    font-family: "Montserrat-Regular" !important;
+
+}

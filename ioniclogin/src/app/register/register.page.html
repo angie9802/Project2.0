@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon  name="chevron-back-outline" style="zoom:2.0"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title big-heading>
+      Register
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="center">
+    <div linespace></div>
+    <div linespace></div>
+    
+    <ion-list>
+      <ion-item>
+        <ion-label>Type of User</ion-label>
+          <ion-select [(ngModel)]="typeUser">
+            <ion-select-option value="p">Patient</ion-select-option>
+            <ion-select-option value="d">Doctor</ion-select-option>
+          </ion-select>
+      </ion-item>
+    </ion-list>
+
+
+      <div linespace></div>
+      <div linespace></div>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="username" placeholder="Username" type="text"></ion-input>
+      </ion-item>
+      <div linespace></div>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
+      </ion-item>
+      <div linespace></div>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="confirm_password" placeholder="Confirm password" type="password"></ion-input>
+      </ion-item>
+
+      <div linespace></div>
+      <ion-button padding color = "danger" class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
+      (click)="prosesRegister()">Sing up</ion-button>
+
+  </div>
+
+</ion-content>

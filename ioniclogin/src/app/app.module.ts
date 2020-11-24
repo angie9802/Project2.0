@@ -13,7 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import {PostProvider } from '../providers/post-provider';
 //import {HttpClientModule} from '@angular/common/http';
-//import {HttpProviderService} from '../providers/http/http-provider.service';
+//import {HttpProviderService} from '../providers/http/http-provider.service'
 
 
 @NgModule({

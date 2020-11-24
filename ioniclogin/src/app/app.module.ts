@@ -12,7 +12,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpModule } from '@angular/http';
 import {PostProvider } from '../providers/post-provider';
-
+//import {HttpClientModule} from '@angular/common/http';
+//import {HttpProviderService} from '../providers/http/http-provider.service';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {PostProvider } from '../providers/post-provider';
      IonicModule.forRoot(), 
      AppRoutingModule,
      HttpModule,
+     //HttpClientModule,
      IonicStorageModule.forRoot()
     ],
      

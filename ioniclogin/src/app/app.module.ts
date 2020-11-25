@@ -12,9 +12,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpModule } from '@angular/http';
 import {PostProvider } from '../providers/post-provider';
-//import {HttpClientModule} from '@angular/common/http';
-//import {HttpProviderService} from '../providers/http/http-provider.service';
 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +23,7 @@ import {PostProvider } from '../providers/post-provider';
      IonicModule.forRoot(), 
      AppRoutingModule,
      HttpModule,
-     //HttpClientModule,
+     HttpClientModule,
      IonicStorageModule.forRoot()
     ],
      
@@ -32,6 +31,7 @@ import {PostProvider } from '../providers/post-provider';
     StatusBar,
     PostProvider,
     SplashScreen,
+    HttpClient,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

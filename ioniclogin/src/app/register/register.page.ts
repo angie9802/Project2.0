@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostProvider } from '../../providers/post-provider';
 import { ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private router: Router,
     private postPvdr: PostProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -50,15 +52,32 @@ export class RegisterPage implements OnInit {
       toast.present();
     }else{
 
+    var httpRegister  = 'http://aulal.org:1880/RegisterUser?nombre='+this.username+'&password='+this.password;
 
+    this.http.get(httpRegister)
+    .subscribe(data=>{
+      console.log(data);
+    });
+    console.log(httpRegister);
+
+    this.router.navigate(['/login']);
+    const toast = await this.toastCtrl.create({
+      message: 'Registro exitoso.',
+      duration: 2000
+    });
+    
+    /*
     let body = {
     username : this.username,
     password : this.password,
     aksi: 'registro'
     };
+
     this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
       var alertmsg = data.msg;
       if (data.succes){
+        this.http.get(httpRegister);
+        console.log(httpRegister);
         this.router.navigate(['/login']);
         const toast = await this.toastCtrl.create({
           message: 'Registro exitoso.',
@@ -71,8 +90,9 @@ export class RegisterPage implements OnInit {
           duration: 2000
         });
       }
-    });
-
+    }
+    );
+    */
   }
 }
 }

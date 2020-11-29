@@ -24,7 +24,11 @@ const routes: Routes = [
   {
     path: 'comunicacion-api',
     loadChildren: () => import('./comunicacion-api/comunicacion-api.module').then( m => m.ComunicacionApiPageModule)
+  },  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+
 
 
 

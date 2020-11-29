@@ -52,7 +52,7 @@ export class RegisterPage implements OnInit {
       toast.present();
     }else{
 
-    var httpRegister  = 'http://aulal.org:1880/RegisterUser?nombre='+this.username+'&password='+this.password;
+    var httpRegister  = 'http://aulal.org:1880/RegisterUserHH?nombre='+this.username+'&password='+this.password;
 
     this.http.get(httpRegister)
     .subscribe(data=>{

@@ -18,7 +18,7 @@ export class ComunicacionApiPage implements OnInit {
   runHttp(){
     //
     //this.http.get('http://demo6930987.mockable.io/')
-    this.http.get('http://aulal.org:1880/RegisterUser?nombre=juan&password=2506')
+    this.http.get('http://aulal.org:1880/RegisterUserHH?nombre=juan&password=2506')
     .subscribe(data=>{
       console.log(data);
       this.friends = data;

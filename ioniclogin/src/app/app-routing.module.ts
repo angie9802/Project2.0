@@ -28,6 +28,18 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'message',
+    loadChildren: () => import('./message/message.module').then( m => m.MessagePageModule)
+  },
+  {
+    path: 'data',
+    loadChildren: () => import('./data/data.module').then( m => m.DataPageModule)
+  },
+  {
+    path: 'formula',
+    loadChildren: () => import('./formula/formula.module').then( m => m.FormulaPageModule)
+  },
 
 
 

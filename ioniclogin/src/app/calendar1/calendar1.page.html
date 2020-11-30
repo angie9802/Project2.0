@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="primary">
     <ion-title>
       {{ viewTitle }}
     </ion-title>
@@ -30,7 +30,7 @@
         [min]="minDate"></ion-datetime>
       </ion-item>
     
-      <ion-button shape="round" padding color = "danger" fill="solid" expand="block" (click)="addEvent()" 
+      <ion-button shape="round" padding color = "primary" fill="solid" expand="block" (click)="addEvent()" 
       [disabled]="event.title == ''">Add</ion-button>
  
     </ion-card-content>

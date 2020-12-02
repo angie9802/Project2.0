@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { DataPageRoutingModule } from './data-routing.module';
 
 import { DataPage } from './data.page';
+import { LineaComponent } from '../components/linea/linea.component';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,10 @@ import { DataPage } from './data.page';
     IonicModule,
     DataPageRoutingModule
   ],
-  declarations: [DataPage]
+  declarations: [
+    DataPage,
+    LineaComponent
+  ],
+  bootstrap: [LineaComponent]
 })
 export class DataPageModule {}

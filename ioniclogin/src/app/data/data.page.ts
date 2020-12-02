@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-data',
+  selector: 'app-linea',
   templateUrl: './data.page.html',
   styleUrls: ['./data.page.scss'],
 })

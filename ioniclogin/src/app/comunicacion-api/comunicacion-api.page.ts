@@ -1,5 +1,7 @@
+import {ComApiService, SearchType} from 'src/app/services/com-api.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comunicacion-api',
@@ -8,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComunicacionApiPage implements OnInit {
 
-  constructor(private http: HttpClient){}
+  results: Observable<any>;
+  searchTerm: string = '';
+  type: SearchType = SearchType.all;
 
-  ngOnInit() {
-  }
+  constructor(private http: HttpClient, private CApi: ComApiService){}
+
+  ngOnInit() {}
 
   friends: any =[];
 
@@ -24,4 +29,10 @@ export class ComunicacionApiPage implements OnInit {
       this.friends = data;
     });
   }
+
+  searchChanged() {
+    // Call our service function which returns an Observable
+    this.results = this.CApi.searchData(this.searchTerm, this.type);
+  }
+
 }

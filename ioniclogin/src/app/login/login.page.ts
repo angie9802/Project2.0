@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
 
     if(this.username!=""&&this.password!=""){
 
-      var httpLogin  = 'http://aulal.org:1880/GetUserHH?nombre='+this.username;
+      var httpLogin  = 'http://aulal.org:1880/GetUserHH?name='+this.username;
       this.http.get(httpLogin)
       .subscribe(async data=>{
 

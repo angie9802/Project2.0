@@ -4,6 +4,41 @@
   </ion-toolbar>
 </ion-header>
 
+
+<ion-content>
+ 
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+ 
+  <ion-item>
+    <ion-label>Select Searchtype</ion-label>
+    <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option value="user_id">UID</ion-select-option>
+    </ion-select>
+  </ion-item>
+ 
+  <ion-list>
+ 
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/', 'user_id', item.user_id]">
+ 
+      <ion-label text-wrap>
+        <h3>USER ID={{ item.user_id }}</h3>
+        <h3>Temperatura={{ item.temperatura }}</h3>
+        <h3>bpm={{ item.bpm }}</h3>
+        <h3>aceleracion en x={{ item.ac_x }}</h3>
+        <h3>aceleracion en y={{ item.ac_y }}</h3>
+        <h3>aceleracion en z={{ item.ac_z }}</h3>
+      </ion-label>
+ 
+      <ion-icon slot="end" *ngIf="item.Type == 'user_id'" name="videocam"></ion-icon>
+ 
+    </ion-item>
+ 
+  </ion-list>
+ 
+</ion-content>
+
+<!--
 <ion-content>
   <ion-card>
     <ion-card-header>
@@ -53,3 +88,4 @@
   </ion-card>
   
 </ion-content>
+-->

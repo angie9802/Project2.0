@@ -32,20 +32,25 @@
       -->
       <div linespace></div>
       <ion-item transparent>
-        <ion-input [(ngModel)]="username" placeholder="Username" type="text"></ion-input>
+        <ion-input [(ngModel)]="username" placeholder="username" type="text"></ion-input>
       </ion-item>
-      <div linespace></div>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="firstName" placeholder="first name" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="lastName" placeholder="last name" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparent>
+        <ion-input [(ngModel)]="email" placeholder="email" type="email"></ion-input>
+      </ion-item>
       <ion-item transparent>
         <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
       </ion-item>
-      <div linespace></div>
       <ion-item transparent>
         <ion-input [(ngModel)]="confirm_password" placeholder="Confirm password" type="password"></ion-input>
       </ion-item>
-
       <div linespace></div>
-      <div linespace></div>
-      <div linespace></div>
+      
       <ion-button padding color = "danger" class="ion-button-class" shape="round" fill="solid" size="large" expand="block"
       (click)="prosesRegister()">Sing up</ion-button>
 

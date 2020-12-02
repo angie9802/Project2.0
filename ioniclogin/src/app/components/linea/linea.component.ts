@@ -1,62 +1,96 @@
-import { Component } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
-  selector: 'app-linea',
+  selector: 'app-line-chart',
   templateUrl: './linea.component.html',
-  styleUrls: ['./linea.component.scss'],
+  styleUrls: ['./linea.component.scss']
 })
-export class LineaComponent{
-
-  public lineChartData:Array<any> = [
-    {data: [64,23,23,65,76,85,12], label:'Series A'},
-    {data: [81,32,58,12,85,12,54], label:'Series B'},
-    {data: [56,93,75,13,62,75,23], label:'Series C'}
-  ]
-
-  public lineChartLabels:Array<any> = [
-    'Enero','Febrero','Marzo','abril',
-    'mayo','junio','julio','agosto',
-    'septiembre','octubre','noviembre',
-    'diciembre'
-  ]
-
-  public lineChartOptions:any={
-    responsive:true
+export class LineChartComponent implements OnInit {
+  public lineChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
+  ];
+  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{}],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+        },
+        {
+          id: 'y-axis-1',
+          position: 'right',
+          gridLines: {
+            color: 'rgba(255,0,0,0.3)',
+          },
+          ticks: {
+            fontColor: 'red',
+          }
+        }
+      ]
+    },
+    annotation: {
+      annotations: [
+        {
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x-axis-0',
+          value: 'March',
+          borderColor: 'orange',
+          borderWidth: 2,
+          label: {
+            enabled: true,
+            fontColor: 'orange',
+            content: 'LineAnno'
+          }
+        },
+      ],
+    },
   };
-
-  public lineChartColors:Array<any> = [
-    {
-      backgroundColor: 'rgba(142,45,78,0,2)',
-      borderColor: 'rgba(65,23,21,4)',
-      pointBackgroundColor: 'rgba(65,23,21,4)',
-      pointBorderColor: 'wfff',
-      pointHoverBackground: 'wfff',
-      pointHoverBorderColor: 'rgba(150,59,32,0,8)',
+  public lineChartColors: Color[] = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    {
-      backgroundColor: 'rgba(142,45,78,0,2)',
-      borderColor: 'rgba(65,23,21,4)',
-      pointBackgroundColor: 'rgba(65,23,21,4)',
-      pointBorderColor: 'wfff',
-      pointHoverBackground: 'wfff',
-      pointHoverBorderColor: 'rgba(150,59,32,0,8)',
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
     },
-    {
-      backgroundColor: 'rgba(142,45,78,0,2)',
-      borderColor: 'rgba(65,23,21,4)',
-      pointBackgroundColor: 'rgba(65,23,21,4)',
-      pointBorderColor: 'wfff',
-      pointHoverBackground: 'wfff',
-      pointHoverBorderColor: 'rgba(150,59,32,0,8)',
+    { // red
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'red',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
-  ]
+  ];
+  public lineChartLegend = true;
+  public lineChartType: ChartType = 'line';
+  public lineChartPlugins = [pluginAnnotations];
 
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   public randomize(): void {
     for (let i = 0; i < this.lineChartData.length; i++) {
@@ -72,7 +106,6 @@ export class LineaComponent{
   }
 
   // events
-
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
@@ -81,4 +114,26 @@ export class LineaComponent{
     console.log(event, active);
   }
 
+  public hideOne(): void {
+    const isHidden = this.chart.isDatasetHidden(1);
+    this.chart.hideDataset(1, !isHidden);
+  }
+
+  public pushOne(): void {
+    this.lineChartData.forEach((x, i) => {
+      const num = this.generateNumber(i);
+      const data: number[] = x.data as number[];
+      data.push(num);
+    });
+    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
+  }
+
+  public changeColor(): void {
+    this.lineChartColors[2].borderColor = 'green';
+    this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
+  }
+
+  public changeLabel(): void {
+    this.lineChartLabels[2] = ['1st Line', '2nd Line'];
+  }
 }

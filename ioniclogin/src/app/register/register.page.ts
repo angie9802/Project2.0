@@ -13,6 +13,9 @@ export class RegisterPage implements OnInit {
 
 
   username: string = "";
+  firstName: string = "";
+  lastName: string = "";
+  email: string = "";
   password: string = "";
   confirm_password : string = "";
 
@@ -52,7 +55,8 @@ export class RegisterPage implements OnInit {
       toast.present();
     }else{
 
-    var httpRegister  = 'http://aulal.org:1880/RegisterUserHH?name='+this.username+'&password='+this.password;
+    var httpRegister  = 'http://aulal.org:1880/RegisterUserHH?name='+this.username+'&password='+this.password
+    +'&firstName='+this.firstName+'&lastName='+this.lastName+'&email='+this.email;
 
     this.http.get(httpRegister)
     .subscribe(data=>{

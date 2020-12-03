@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export enum SearchType {
-  all = '',
   user_id = 'user_id'
 }
 
@@ -13,6 +12,7 @@ export enum SearchType {
 })
 export class ComApiService {
   url = 'http://aulal.org:1880/GetUserData/';
+  urlF= 'http://aulal.org:1880/GetUserFisio/';
   apiKey = ''; // <-- Enter your own key here!
  
   /**
@@ -29,8 +29,13 @@ export class ComApiService {
   * @param {SearchType} type movie, series, episode or empty
   * @returns Observable with the search results
   */
-  searchData(title: string, type: SearchType): Observable<any> {
-    return this.http.get(`${this.url}?s=${encodeURI(title)}&type=${type}&apikey=${this.apiKey}`).pipe(
+  searchData(title: string): Observable<any> {
+    return this.http.get(`${this.url}?s=${encodeURI(title)}&apikey=${this.apiKey}`).pipe(
+      map(results => results['Search'])
+    );
+  }
+  searchFisio(title: string): Observable<any> {
+    return this.http.get(`${this.urlF}?s=${encodeURI(title)}&apikey=${this.apiKey}`).pipe(
       map(results => results['Search'])
     );
   }

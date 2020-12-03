@@ -1,8 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
-import * as pluginAnnotations from 'chartjs-plugin-annotation';
-
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,10 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './data.page.html',
   styleUrls: ['./data.page.scss'],
 })
+
 export class DataPage implements OnInit {
 
   constructor(
-    private router: Router) { }
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }

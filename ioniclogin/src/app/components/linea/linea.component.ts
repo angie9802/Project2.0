@@ -16,10 +16,10 @@ export class LineChartComponent implements OnInit {
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
   userID : string = '1';
-  Temperatura : number[];
-  BPM : number[];
+  temperatura : number[];
+  bpm : number[];
   oxigeno  : number[];
-  Fecha : string[];
+  fecha : string[];
 
   constructor(
     private http: HttpClient,
@@ -39,15 +39,45 @@ export class LineChartComponent implements OnInit {
       this.sensorData = data;
 
       console.log("extraído:");
-      console.log(this.sensorData.Search[0]);
+      console.log(this.sensorData.Search[0].fecha);
+      console.log(Object.keys(this.sensorData.Search));
+      console.log("Longitud: " + Object.keys(this.sensorData.Search).length);
       console.log("Longitud: " + this.sensorData.length);
 
-      for (let i = 0; i < this.sensorData.Search.length; i++) {
-        this.Fecha[i]=this.sensorData.Search[0].fecha;
+      var lengthData = Object.keys(this.sensorData.Search).length;
+      //var num1 = 0;
+      //this.fecha[num1]=this.sensorData.Search[num1].fecha;
+      //console.log("++");
+      var fecha = new Array(lengthData);
+      var temperatura = new Array(lengthData);
+      var bpm = new Array(lengthData);
+      var oxigeno = new Array(lengthData);
+
+      for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
+        //var ikey:string = i.toString();
+        var ikey= Object.keys(this.sensorData.Search)[i];
+        fecha[i]=this.sensorData.Search[i].fecha;
+        temperatura[i]=this.sensorData.Search[i].temperatura;
+        bpm[i]=this.sensorData.Search[i].bpm;
+        oxigeno[i]=this.sensorData.Search[i].sO2;
       }
+      this.fecha = fecha;
+      this.temperatura = temperatura;
+      this.bpm = bpm;
+      this.oxigeno = oxigeno;
+
+      this.lineChartData[0].data = this.temperatura;
+      this.lineChartData[1].data = this.bpm;
+      this.lineChartData[2].data = this.oxigeno;
+      this.lineChartLabels = this.fecha;
     });
+
+
     console.log("extraído:");
-    console.log(this.sensorData);
+    console.log("fecha:"+this.fecha);
+    console.log("temperatura:"+this.temperatura);
+    console.log("bpm:"+this.bpm);
+    console.log("oxigeno:"+this.oxigeno);
   }
 
   public lineChartData: ChartDataSets[] = [

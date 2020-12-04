@@ -39,15 +39,11 @@ export class LineChartComponent implements OnInit {
       this.sensorData = data;
 
       console.log("extraído:");
-      console.log(this.sensorData.Search[0].fecha);
+      console.log(this.sensorData.Search[0].fecha[4]);
       console.log(Object.keys(this.sensorData.Search));
       console.log("Longitud: " + Object.keys(this.sensorData.Search).length);
-      console.log("Longitud: " + this.sensorData.length);
 
       var lengthData = Object.keys(this.sensorData.Search).length;
-      //var num1 = 0;
-      //this.fecha[num1]=this.sensorData.Search[num1].fecha;
-      //console.log("++");
       var fecha = new Array(lengthData);
       var temperatura = new Array(lengthData);
       var bpm = new Array(lengthData);
@@ -56,7 +52,7 @@ export class LineChartComponent implements OnInit {
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
         //var ikey:string = i.toString();
         var ikey= Object.keys(this.sensorData.Search)[i];
-        fecha[i]=this.sensorData.Search[i].fecha;
+        fecha[i]=this.sensorData.Search[i].fecha.slice(0,10);
         temperatura[i]=this.sensorData.Search[i].temperatura;
         bpm[i]=this.sensorData.Search[i].bpm;
         oxigeno[i]=this.sensorData.Search[i].sO2;

@@ -4,6 +4,7 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { Observable } from 'rxjs';
 import {ComApiService} from 'src/app/services/com-api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,13 +13,41 @@ import {ComApiService} from 'src/app/services/com-api.service';
 })
 export class LineChartComponent implements OnInit {
   
-  dataSensor: Observable<any>;
-  userID: string = '1';
-  //Temperatura: array<any>;
+  sensorData: any = [];
+  url = 'http://aulal.org:1880/GetUserData/';
+  userID : string = '1';
+  Temperatura : number[];
+  BPM : number[];
+  oxigeno  : number[];
+  Fecha : string[];
+
+  constructor(
+    private http: HttpClient,
+    private CApi: ComApiService
+  ) { }
   
-  searchData() {
-    // Call our service function which returns an Observable
-    this.dataSensor = this.CApi.searchData(this.userID);
+  ngOnInit() {
+    this.getDataUser(this.userID);
+  }
+
+  getDataUser(IDuser : string){
+    var urlData = this.url + '?s=' + IDuser;
+    this.http.get(urlData)
+    .subscribe(data=>{
+      console.log("original:");
+      console.log(data);
+      this.sensorData = data;
+
+      console.log("extraído:");
+      console.log(this.sensorData.Search[0]);
+      console.log("Longitud: " + this.sensorData.length);
+
+      for (let i = 0; i < this.sensorData.Search.length; i++) {
+        this.Fecha[i]=this.sensorData.Search[0].fecha;
+      }
+    });
+    console.log("extraído:");
+    console.log(this.sensorData);
   }
 
   public lineChartData: ChartDataSets[] = [
@@ -98,17 +127,6 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-
-  constructor(
-    private CApi: ComApiService
-  ) { }
-
-  ngOnInit(): void {
-  }
-
-  public setData(data: Observable<any>):void {
-
-  }
 
   public randomize(): void {
     for (let i = 0; i < this.lineChartData.length; i++) {

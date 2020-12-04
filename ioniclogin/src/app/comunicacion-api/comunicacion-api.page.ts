@@ -18,6 +18,8 @@ export class ComunicacionApiPage implements OnInit {
   ngOnInit() {}
 
   friends: any =[]; 
+  dataUser: any = [];
+  url = 'http://aulal.org:1880/GetUserData/';
 
   runHttp(){
     //
@@ -32,6 +34,7 @@ export class ComunicacionApiPage implements OnInit {
   searchChanged() {
     // Call our service function which returns an Observable
     this.results = this.CApi.searchData(this.searchTerm);
+    //this.getDataUser(this.searchTerm);
   }
 
 }

@@ -19,4 +19,5 @@ export class DataPage implements OnInit {
   back(){
     this.router.navigate(['/home']);
   }
+  
 }

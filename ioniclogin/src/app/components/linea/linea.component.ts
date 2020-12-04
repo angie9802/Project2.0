@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import { Observable } from 'rxjs';
+import {ComApiService} from 'src/app/services/com-api.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -9,10 +11,20 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
   styleUrls: ['./linea.component.scss']
 })
 export class LineChartComponent implements OnInit {
+  
+  dataSensor: Observable<any>;
+  userID: string = '1';
+  //Temperatura: array<any>;
+  
+  searchData() {
+    // Call our service function which returns an Observable
+    this.dataSensor = this.CApi.searchData(this.userID);
+  }
+
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Temperatura' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'BPM' },
+    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Oxígeno', yAxisID: 'y-axis-1' }
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -87,9 +99,15 @@ export class LineChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor() { }
+  constructor(
+    private CApi: ComApiService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public setData(data: Observable<any>):void {
+
   }
 
   public randomize(): void {

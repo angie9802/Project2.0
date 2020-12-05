@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import { Observable } from 'rxjs';
 import {ComApiService} from 'src/app/services/com-api.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,10 +15,6 @@ export class LineChartComponent implements OnInit {
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
   userID : string = '1';
-  temperatura : number[];
-  bpm : number[];
-  oxigeno  : number[];
-  fecha : string[];
 
   constructor(
     private http: HttpClient,
@@ -34,42 +29,26 @@ export class LineChartComponent implements OnInit {
     var urlData = this.url + '?s=' + IDuser;
     this.http.get(urlData)
     .subscribe(data=>{
-      console.log("original:");
-      console.log(data);
+
       this.sensorData = data;
-
-      console.log("extraído:");
-      console.log(this.sensorData.Search[0].fecha);
-      console.log(Object.keys(this.sensorData.Search));
-      console.log("Longitud: " + Object.keys(this.sensorData.Search).length);
-      console.log("Longitud: " + this.sensorData.length);
-
       var lengthData = Object.keys(this.sensorData.Search).length;
-      //var num1 = 0;
-      //this.fecha[num1]=this.sensorData.Search[num1].fecha;
-      //console.log("++");
       var fecha = new Array(lengthData);
       var temperatura = new Array(lengthData);
       var bpm = new Array(lengthData);
       var oxigeno = new Array(lengthData);
 
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
-        //var ikey:string = i.toString();
         var ikey= Object.keys(this.sensorData.Search)[i];
-        fecha[i]=this.sensorData.Search[i].fecha;
+        fecha[i]=this.sensorData.Search[i].fecha.slice(0,10);
         temperatura[i]=this.sensorData.Search[i].temperatura;
         bpm[i]=this.sensorData.Search[i].bpm;
         oxigeno[i]=this.sensorData.Search[i].sO2;
       }
-      this.fecha = fecha;
-      this.temperatura = temperatura;
-      this.bpm = bpm;
-      this.oxigeno = oxigeno;
 
-      this.lineChartData[0].data = this.temperatura;
-      this.lineChartData[1].data = this.bpm;
-      this.lineChartData[2].data = this.oxigeno;
-      this.lineChartLabels = this.fecha;
+      this.lineChartData[0].data = temperatura;
+      this.lineChartData[1].data = bpm;
+      this.lineChartData[2].data = oxigeno;
+      this.lineChartLabels = fecha;
     });
 
 

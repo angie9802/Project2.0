@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   }
 
   goMessage(){
-    this.router.navigate(['/message']);
+    this.router.navigate(['/data-fisio']);
   }
 
   goCalendar(){
@@ -30,6 +30,10 @@ export class HomePage implements OnInit {
 
   goData(){
     this.router.navigate(['/data']);
+  }
+
+  goDataFisio(){
+    this.router.navigate(['/data-fisio']);
   }
 
   goFormula(){

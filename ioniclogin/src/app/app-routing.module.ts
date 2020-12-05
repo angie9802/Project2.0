@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'comunicacion-api',
     loadChildren: () => import('./comunicacion-api/comunicacion-api.module').then( m => m.ComunicacionApiPageModule)
-  },  {
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'data',
     loadChildren: () => import('./data/data.module').then( m => m.DataPageModule)
+  },
+  {
+    path: 'data-fisio',
+    loadChildren: () => import('./data-fisio/data-fisio.module').then( m => m.DataFisioPageModule)
   },
   {
     path: 'formula',

@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'formula',
     loadChildren: () => import('./formula/formula.module').then( m => m.FormulaPageModule)
   },
+  {
+    path: 'data-fisio',
+    loadChildren: () => import('./data-fisio/data-fisio.module').then( m => m.DataFisioPageModule)
+  },
 
 
 

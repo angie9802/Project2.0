@@ -7,28 +7,32 @@ import {ComApiService} from 'src/app/services/com-api.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-line-chart',
-  templateUrl: './linea.component.html',
-  styleUrls: ['./linea.component.scss']
+  selector: 'app-fisline-chart',
+  templateUrl: './fisline.component.html',
+  styleUrls: ['./fisline.component.scss'],
 })
-export class LineChartComponent implements OnInit {
-  
+export class FislineChartComponent implements OnInit {
+
   sensorData: any = [];
-  url = 'http://aulal.org:1880/GetUserData/';
+  url = 'http://aulal.org:1880/GetUserFisio/';
   userID : string = '1';
-  temperatura : number[];
-  bpm : number[];
-  oxigeno  : number[];
+  ac_x : number[];
+  ac_y : number[];
+  ac_z : number[];
+  gi_x : number[];
+  gi_y : number[];
+  gi_z : number[];
   fecha : string[];
 
   constructor(
     private http: HttpClient,
     private CApi: ComApiService
-  ) { }
-  
+    ) { }
+
   ngOnInit() {
     this.getDataUser(this.userID);
   }
+
 
   getDataUser(IDuser : string){
     var urlData = this.url + '?s=' + IDuser;
@@ -39,51 +43,64 @@ export class LineChartComponent implements OnInit {
       this.sensorData = data;
 
       console.log("extraído:");
-      console.log(this.sensorData.Search[0].fecha);
+      console.log(this.sensorData.Search[0].fecha[4]);
       console.log(Object.keys(this.sensorData.Search));
       console.log("Longitud: " + Object.keys(this.sensorData.Search).length);
-      console.log("Longitud: " + this.sensorData.length);
 
       var lengthData = Object.keys(this.sensorData.Search).length;
-      //var num1 = 0;
-      //this.fecha[num1]=this.sensorData.Search[num1].fecha;
-      //console.log("++");
+      var ac_x = new Array(lengthData);
+      var ac_y = new Array(lengthData);
+      var ac_z = new Array(lengthData);
+      var gi_x = new Array(lengthData);
+      var gi_y = new Array(lengthData);
+      var gi_z = new Array(lengthData);
       var fecha = new Array(lengthData);
-      var temperatura = new Array(lengthData);
-      var bpm = new Array(lengthData);
-      var oxigeno = new Array(lengthData);
 
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
         //var ikey:string = i.toString();
         var ikey= Object.keys(this.sensorData.Search)[i];
-        fecha[i]=this.sensorData.Search[i].fecha;
-        temperatura[i]=this.sensorData.Search[i].temperatura;
-        bpm[i]=this.sensorData.Search[i].bpm;
-        oxigeno[i]=this.sensorData.Search[i].sO2;
+        fecha[i]=this.sensorData.Search[i].fecha.slice(0,10);
+        ac_x[i]=this.sensorData.Search[i].ac_x;
+        ac_y[i]=this.sensorData.Search[i].ac_y;
+        ac_z[i]=this.sensorData.Search[i].ac_z;
+        gi_x[i]=this.sensorData.Search[i].gi_x;
+        gi_y[i]=this.sensorData.Search[i].gi_y;
+        gi_z[i]=this.sensorData.Search[i].gi_z;
       }
       this.fecha = fecha;
-      this.temperatura = temperatura;
-      this.bpm = bpm;
-      this.oxigeno = oxigeno;
+      this.ac_x = ac_x;
+      this.ac_y = ac_x;
+      this.ac_z = ac_x;
+      this.gi_x = gi_x;
+      this.gi_y = gi_x;
+      this.gi_z = gi_x;
 
-      this.lineChartData[0].data = this.temperatura;
-      this.lineChartData[1].data = this.bpm;
-      this.lineChartData[2].data = this.oxigeno;
+      this.lineChartData[0].data = this.ac_x;
+      this.lineChartData[1].data = this.ac_y;
+      this.lineChartData[2].data = this.ac_z;
+      this.lineChartData[3].data = this.gi_x;
+      this.lineChartData[4].data = this.gi_y;
+      this.lineChartData[5].data = this.gi_z;
       this.lineChartLabels = this.fecha;
     });
 
-
     console.log("extraído:");
-    console.log("fecha:"+this.fecha);
-    console.log("temperatura:"+this.temperatura);
-    console.log("bpm:"+this.bpm);
-    console.log("oxigeno:"+this.oxigeno);
+    console.log("ACx:"+this.ac_x);
+    console.log("ACy:"+this.ac_y);
+    console.log("ACz:"+this.ac_z);
+    console.log("GIx:"+this.gi_x);
+    console.log("GIy:"+this.gi_y);
+    console.log("GIz:"+this.gi_z);
+
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Temperatura' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'BPM' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Oxígeno', yAxisID: 'y-axis-1' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_x' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_y' }, 
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_x' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_z' , yAxisID: 'y-axis-1' }
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {

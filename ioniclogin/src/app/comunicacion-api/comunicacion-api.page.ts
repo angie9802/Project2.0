@@ -34,7 +34,6 @@ export class ComunicacionApiPage implements OnInit {
   searchChanged() {
     // Call our service function which returns an Observable
     this.results = this.CApi.searchData(this.searchTerm);
-    //this.getDataUser(this.searchTerm);
   }
 
 }

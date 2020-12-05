@@ -5,10 +5,44 @@
         <ion-icon  name="chevron-back-outline" style="zoom:2.0"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title big-heading>Medical formulas</ion-title>
+    <ion-title big-heading>Prescriptions</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+ 
 
+  <ion-grid>
+    <ion-row>
+      <ion-col> <div>
+          <h3>Medicine</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+          <h3>Dose</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+          <h3>Duration</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+        <h3>Date</h3>
+      </div>  </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let item of (results | async)" [routerLink]="['/', 'user_id', item.user_id]">
+      <ion-col> <div>
+          <h3>{{ item.medicine }}</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+          <h3>{{ item.dose }}</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+          <h3>{{ item.duration }}</h3>
+        </div>  </ion-col>
+      <ion-col> <div>
+          <h3>{{ item.date }}</h3>
+        </div>  </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+ 
 </ion-content>

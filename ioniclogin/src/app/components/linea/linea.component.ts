@@ -35,28 +35,20 @@ export class LineChartComponent implements OnInit {
       var lengthData = Object.keys(this.sensorData.Search).length;
       var fecha = new Array(lengthData);
       var temperatura = new Array(lengthData);
-      var bpm = new Array(lengthData);
-      var oxigeno = new Array(lengthData);
 
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
         var ikey= Object.keys(this.sensorData.Search)[i];
         fecha[i]=this.sensorData.Search[i].fecha.slice(0,10);
         temperatura[i]=this.sensorData.Search[i].temperatura;
-        bpm[i]=this.sensorData.Search[i].bpm;
-        oxigeno[i]=this.sensorData.Search[i].sO2;
       }
 
       this.lineChartData[0].data = temperatura;
-      this.lineChartData[1].data = bpm;
-      this.lineChartData[2].data = oxigeno;
       this.lineChartLabels = fecha;
     });
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Temperatura' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'BPM' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Oxígeno', yAxisID: 'y-axis-1' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Temperatura' }
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -103,22 +95,6 @@ export class LineChartComponent implements OnInit {
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',

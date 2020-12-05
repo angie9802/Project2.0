@@ -26,6 +26,7 @@ export class LineChartComponent implements OnInit {
   }
 
   getDataUser(IDuser : string){
+
     var urlData = this.url + '?s=' + IDuser;
     this.http.get(urlData)
     .subscribe(data=>{
@@ -50,13 +51,6 @@ export class LineChartComponent implements OnInit {
       this.lineChartData[2].data = oxigeno;
       this.lineChartLabels = fecha;
     });
-
-
-    console.log("extraído:");
-    console.log("fecha:"+this.fecha);
-    console.log("temperatura:"+this.temperatura);
-    console.log("bpm:"+this.bpm);
-    console.log("oxigeno:"+this.oxigeno);
   }
 
   public lineChartData: ChartDataSets[] = [

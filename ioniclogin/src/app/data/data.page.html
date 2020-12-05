@@ -13,9 +13,36 @@
 
   <div>
   <!--<app-bpm></app-bpm>-->
-  <app-line-chart></app-line-chart>
-  <app-bpm></app-bpm>
-  <app-oxigeno></app-oxigeno>
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Temperatura (°C)</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <app-line-chart></app-line-chart>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Pulso (bpm)</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <app-bpm></app-bpm>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Saturación de oxígeno (%)</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <app-oxigeno></app-oxigeno>
+    </ion-card-content>
+  </ion-card>
+
   </div>
   
 </ion-content>

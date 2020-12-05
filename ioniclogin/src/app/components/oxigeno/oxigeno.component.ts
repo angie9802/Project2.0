@@ -54,20 +54,28 @@ export class OxigenoComponent implements OnInit {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [
+        {
+          id: 'x-axis-0',
+          gridLines: {
+            color: 'rgba(2,3,1,0.4)',
+          },
+          ticks: {
+            fontColor: 'black',
+            fontSize: 15
+          }
+        }
+      ],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
-        },
-        {
-          id: 'y-axis-1',
-          position: 'right',
           gridLines: {
-            color: 'rgba(255,0,0,0.3)',
+            color: 'rgba(2,3,1,0.3)',
           },
           ticks: {
-            fontColor: 'red',
+            fontColor: 'black',
+            fontSize: 15
           }
         }
       ]
@@ -91,16 +99,16 @@ export class OxigenoComponent implements OnInit {
     },
   };
   public lineChartColors: Color[] = [
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
+    { 
+      backgroundColor: 'rgba(47,68,228,0.3)',
+      borderColor: 'rgba(47,68,228,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend = true;
+  public lineChartLegend = false;
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;

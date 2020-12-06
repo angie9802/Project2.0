@@ -69,42 +69,35 @@ export class FislineChartComponent implements OnInit {
       }
       this.fecha = fecha;
       this.ac_x = ac_x;
-      this.ac_y = ac_x;
-      this.ac_z = ac_x;
+      this.ac_y = ac_y;
+      this.ac_z = ac_z;
       this.gi_x = gi_x;
-      this.gi_y = gi_x;
-      this.gi_z = gi_x;
+      this.gi_y = gi_y;
+      this.gi_z = gi_z;
 
-      this.lineChartData[0].data = this.ac_x;
-      this.lineChartData[1].data = this.ac_y;
-      this.lineChartData[2].data = this.ac_z;
-      this.lineChartData[3].data = this.gi_x;
-      this.lineChartData[4].data = this.gi_y;
-      this.lineChartData[5].data = this.gi_z;
+      this.lineChartData[0].data = this.gi_x;
+      this.lineChartData[1].data = this.gi_y;
+      this.lineChartData[2].data = this.gi_z;
       this.lineChartLabels = this.fecha;
 
       this.AcelChartData[0].data = this.ac_x;
       this.AcelChartData[1].data = this.ac_y;
       this.AcelChartData[2].data = this.ac_z;
-
-      this.GiroXChartData[3].data = this.gi_x;
-      this.GiroYChartData[3].data = this.gi_y;
+      this.GiroXChartData[0].data = this.gi_x;
+      this.GiroYChartData[0].data = this.gi_y;
     });
 
     console.log("extraído:");
-    console.log("ACx:"+this.ac_x);
-    console.log("ACy:"+this.ac_y);
-    console.log("ACz:"+this.ac_z);
-    console.log("GIx:"+this.gi_x);
-    console.log("GIy:"+this.gi_y);
-    console.log("GIz:"+this.gi_z);
+    console.log("ac_x:"+this.ac_x);
+    console.log("ac_y:"+this.ac_y);
+    console.log("ac_z:"+this.ac_z);
+    console.log("gi_x:"+this.gi_x);
+    console.log("gi_y:"+this.gi_y);
+    console.log("gi_z:"+this.gi_z);
 
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_x' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_y' }, 
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' },
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_x' },
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' },
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_z' , yAxisID: 'y-axis-1' }
@@ -113,14 +106,14 @@ export class FislineChartComponent implements OnInit {
   public AcelChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_x' },
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_y' }, 
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' , yAxisID: 'y-axis-1' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' }
   ];
 
   public GiroXChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_x' , yAxisID: 'y-axis-1' }
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'gi_x' }
   ];
   public GiroYChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' , yAxisID: 'y-axis-1' }
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'gi_y' }
   ];
   
 

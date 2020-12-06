@@ -10,39 +10,21 @@
 </ion-header>
 
 <ion-content>
- 
-
-  <ion-grid>
-    <ion-row>
-      <ion-col> <div>
-          <h3>Medicine</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>Dose</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>Duration</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-        <h3>Date</h3>
-      </div>  </ion-col>
-    </ion-row>
-
-    <ion-row *ngFor="let item of (results | async)" [routerLink]="['/', 'patient_id', item.patient_id]">
-      <ion-col> <div>
-          <h3>{{ item.medicine }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.dose }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.duration }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.date }}</h3>
-        </div>  </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+  <br><br><br>
+  <table border="2" align="center">
+		<!--<caption>Titulo de la tabla</caption>-->
+		<tr>
+			<th class="headerTable"><h4>Medicine</h4></th>
+      <th class="headerTable"><h4>Dose</h4></th>
+      <th class="headerTable"><h4>Duration</h4></th>
+      <th class="headerTable"><h4>Date</h4></th>
+		</tr>
+		<tr *ngFor="let item of (results | async)" [routerLink]="['/', 'patient_id', item.patient_id]">
+			<td class="headerItem"><h5>{{ item.medicine }}</h5></td>
+      <td class="headerItem"><h5>{{ item.dose }}</h5></td>
+      <td class="headerItem"><h5>{{ item.duration }}</h5></td>
+      <td class="headerItem"><h5>{{ item.date.slice(0,10) }}</h5></td>
+		</tr>
+	</table>
  
 </ion-content>

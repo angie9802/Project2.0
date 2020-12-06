@@ -11,7 +11,7 @@
 
 <ion-content>
   <br><br><br>
-  <table border="2" align="center">
+  <table align="center">
 		<!--<caption>Titulo de la tabla</caption>-->
 		<tr>
 			<th class="headerTable"><h4>Medicine</h4></th>
@@ -20,10 +20,10 @@
       <th class="headerTable"><h4>Date</h4></th>
 		</tr>
 		<tr *ngFor="let item of (results | async)" [routerLink]="['/', 'patient_id', item.patient_id]">
-			<td class="headerItem"><h5>{{ item.medicine }}</h5></td>
-      <td class="headerItem"><h5>{{ item.dose }}</h5></td>
-      <td class="headerItem"><h5>{{ item.duration }}</h5></td>
-      <td class="headerItem"><h5>{{ item.date.slice(0,10) }}</h5></td>
+			<td class="headerItem1"><h5>{{ item.medicine }}</h5></td>
+      <td class="headerItem2"><h5>{{ item.dose }}</h5></td>
+      <td class="headerItem1"><h5>{{ item.duration }}</h5></td>
+      <td class="headerItem2"><h5>{{ item.date.slice(0,10) }}</h5></td>
 		</tr>
 	</table>
  

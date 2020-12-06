@@ -28,7 +28,7 @@
       </div>  </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let item of (results | async)" [routerLink]="['/', 'user_id', item.user_id]">
+    <ion-row *ngFor="let item of (results | async)" [routerLink]="['/', 'patient_id', item.patient_id]">
       <ion-col> <div>
           <h3>{{ item.medicine }}</h3>
         </div>  </ion-col>

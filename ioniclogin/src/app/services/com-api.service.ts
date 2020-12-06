@@ -41,7 +41,7 @@ export class ComApiService {
     );
   }
   searchFormulas(title: string): Observable<any> {
-    return this.http.get(`${this.urlF}?patient_id=${encodeURI(title)}&apikey=${this.apiKey}`).pipe(
+    return this.http.get(`${this.urlP}?patient_id=${encodeURI(title)}&apikey=${this.apiKey}`).pipe(
       map(results => results['Search'])
     );
   }

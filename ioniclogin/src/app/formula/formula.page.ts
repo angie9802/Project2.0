@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {ComApiService} from 'src/app/services/com-api.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-formula',
@@ -12,13 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class FormulaPage implements OnInit {
 
   results: Observable<any>;
-  searchTerm: string = '';
   userID: string = '1';
   
   constructor(
     private router: Router,
     private CApi: ComApiService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.searchChanged();

@@ -30,7 +30,7 @@ export class LineChartComponent implements OnInit {
     var urlData = this.url + '?s=' + IDuser;
     this.http.get(urlData)
     .subscribe(data=>{
-
+      
       this.sensorData = data;
       var lengthData = Object.keys(this.sensorData.Search).length;
       var fecha = new Array(lengthData);

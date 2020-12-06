@@ -11,7 +11,7 @@ import {ComApiService} from 'src/app/services/com-api.service';
 export class FormulaPage implements OnInit {
 
   results: Observable<any>;
-  userID: string = '1';
+  userID: string = '4';
   
   constructor(
     private router: Router,

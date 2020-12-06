@@ -22,6 +22,9 @@ export class FislineChartComponent implements OnInit {
   gi_x : number[];
   gi_y : number[];
   gi_z : number[];
+  th_x : number[];
+  th_y : number[];
+  th_z : number[];
   fecha : string[];
 
   constructor(
@@ -54,6 +57,9 @@ export class FislineChartComponent implements OnInit {
       var gi_x = new Array(lengthData);
       var gi_y = new Array(lengthData);
       var gi_z = new Array(lengthData);
+      var th_x = new Array(lengthData);
+      var th_y = new Array(lengthData);
+      var th_z = new Array(lengthData);
       var fecha = new Array(lengthData);
 
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
@@ -66,6 +72,9 @@ export class FislineChartComponent implements OnInit {
         gi_x[i]=this.sensorData.Search[i].gi_x;
         gi_y[i]=this.sensorData.Search[i].gi_y;
         gi_z[i]=this.sensorData.Search[i].gi_z;
+        th_x[i]=this.sensorData.Search[i].th_x;
+        th_y[i]=this.sensorData.Search[i].th_y;
+        th_z[i]=this.sensorData.Search[i].th_z;
       }
       this.fecha = fecha;
       this.ac_x = ac_x;
@@ -74,17 +83,26 @@ export class FislineChartComponent implements OnInit {
       this.gi_x = gi_x;
       this.gi_y = gi_y;
       this.gi_z = gi_z;
+      this.th_x = th_x;
+      this.th_y = th_y;
+      this.th_z = th_z;
 
-      this.lineChartData[0].data = this.gi_x;
-      this.lineChartData[1].data = this.gi_y;
-      this.lineChartData[2].data = this.gi_z;
+      this.lineChartData[0].data = this.th_x;
+      this.lineChartData[1].data = this.th_y;
+      this.lineChartData[2].data = this.th_z;
       this.lineChartLabels = this.fecha;
 
       this.AcelChartData[0].data = this.ac_x;
       this.AcelChartData[1].data = this.ac_y;
       this.AcelChartData[2].data = this.ac_z;
+
       this.GiroXChartData[0].data = this.gi_x;
       this.GiroYChartData[0].data = this.gi_y;
+      this.GiroZChartData[0].data = this.gi_z;
+
+      this.THXChartData[0].data = this.th_x;
+      this.THYChartData[0].data = this.th_y;
+      this.THZChartData[0].data = this.th_z;
     });
 
     console.log("extraído:");
@@ -98,9 +116,9 @@ export class FislineChartComponent implements OnInit {
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_x' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_z' , yAxisID: 'y-axis-1' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_x' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_y' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_z' }
   ];
 
   public AcelChartData: ChartDataSets[] = [
@@ -110,10 +128,23 @@ export class FislineChartComponent implements OnInit {
   ];
 
   public GiroXChartData: ChartDataSets[] = [
-    { data: [6, 5, 8, 9, 5, 5, 4], label: 'gi_x' }
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'GIRO_x' }
   ];
   public GiroYChartData: ChartDataSets[] = [
-    { data: [6, 5, 8, 9, 5, 5, 4], label: 'gi_y' }
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'GIRO_y' }
+  ];
+  public GiroZChartData: ChartDataSets[] = [
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'GIRO_z' }
+  ];
+
+  public THXChartData: ChartDataSets[] = [
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_x' }
+  ];
+  public THYChartData: ChartDataSets[] = [
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_y' }
+  ];
+  public THZChartData: ChartDataSets[] = [
+    { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_z' }
   ];
   
 

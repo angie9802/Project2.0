@@ -82,6 +82,13 @@ export class FislineChartComponent implements OnInit {
       this.lineChartData[4].data = this.gi_y;
       this.lineChartData[5].data = this.gi_z;
       this.lineChartLabels = this.fecha;
+
+      this.AcelChartData[0].data = this.ac_x;
+      this.AcelChartData[1].data = this.ac_y;
+      this.AcelChartData[2].data = this.ac_z;
+
+      this.GiroXChartData[3].data = this.gi_x;
+      this.GiroYChartData[3].data = this.gi_y;
     });
 
     console.log("extraído:");
@@ -102,6 +109,22 @@ export class FislineChartComponent implements OnInit {
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' },
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_z' , yAxisID: 'y-axis-1' }
   ];
+
+  public AcelChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_x' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_y' }, 
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' , yAxisID: 'y-axis-1' }
+  ];
+
+  public GiroXChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_x' , yAxisID: 'y-axis-1' }
+  ];
+  public GiroYChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'gi_y' , yAxisID: 'y-axis-1' }
+  ];
+  
+
+
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,

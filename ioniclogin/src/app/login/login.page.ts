@@ -50,8 +50,9 @@ export class LoginPage implements OnInit {
           console.log("password ingresada: "+this.password);
           console.log("password correcta: "+this.datosUsuarios[0].password);
           if(this.datosUsuarios[0].password == this.password){
-            this.machineIDserv.machineID = this.datosUsuarios[0].machine_id;
-            this.machineIDserv.machineID = this.datosUsuarios[0].id;
+            this.machineIDserv.machineID = this.datosUsuarios[0].machine_ID;
+            console.log("machineId= " + this.machineIDserv.machineID)
+            this.machineIDserv.patientID = this.datosUsuarios[0].id;
             this.router.navigate(['/home']);
             const toast = await this.toastCtrl.create({
               message: 'Ingreso exitoso',

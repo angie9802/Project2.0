@@ -28,7 +28,7 @@ export class DataFisioPage implements OnInit {
   }
   searchChanged() {
     // Call our service function which returns an Observable
-    this.results = this.CApi.searchFisio(this.searchTerm);
+    this.results = this.CApi.searchFisio(this.machineID);
     console.log(this.results);
   }
 }

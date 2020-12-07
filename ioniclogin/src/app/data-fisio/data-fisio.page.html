@@ -16,8 +16,16 @@
   <!--<app-linea></app-linea>-->
   <app-fisline-chart></app-fisline-chart>
   </div>
- 
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-toolbar >
+    <ion-title big-heading> Data Table</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="searchChanged($event)">
+        <ion-icon  name="apps-outline" style="zoom:2.0"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+</ion-toolbar>
+  
  <ion-content padding class="tab5-content">
   <ion-grid >
     <ion-row>

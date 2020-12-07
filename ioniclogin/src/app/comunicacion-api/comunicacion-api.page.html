@@ -42,42 +42,9 @@
       <ion-col> <div>
         <h3>sO2</h3>
       </div>  </ion-col>
-      <!--
-      <ion-col> <div>
-          <h3>AC x</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>AC y</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>AC z</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>GI x</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>GI y</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>GI z</h3>
-        </div>  </ion-col>
-        -->
     </ion-row>
 
     <ion-row *ngFor="let item of (results | async)" [routerLink]="['/', 'user_id', item.user_id]">
-      <ion-col> <div>
-          <h3>{{ item.user_id }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.temperatura }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.bpm }}</h3>
-        </div>  </ion-col>
-      <ion-col> <div>
-          <h3>{{ item.sO2 }}</h3>
-        </div>  </ion-col>
-        <!--
       <ion-col> <div>
           <h3>{{ item.ac_x }}</h3>
         </div>  </ion-col>
@@ -96,7 +63,6 @@
       <ion-col> <div>
           <h3>{{ item.gi_z }}</h3>
         </div>  </ion-col>
-        -->
     </ion-row>
     
   </ion-grid>

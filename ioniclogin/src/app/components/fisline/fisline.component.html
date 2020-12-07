@@ -1,10 +1,17 @@
-
-
+  <ion-item>
+    <ion-label>Graphic</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="CHARTT" interface="popover" (ionChange)="optionsFn();">
+      <ion-select-option [value]="lineChartData">Movement</ion-select-option>
+      <ion-select-option [value]="GiroXChartData">Giro x</ion-select-option>
+      <ion-select-option [value]="GiroYChartData">Giro y</ion-select-option>
+      <ion-select-option [value]="GiroZChartData">Giro z</ion-select-option>
+    </ion-select>
+  </ion-item>
 <div class="flex">
   <div class="flex-item">
     <div style="display: block;">
     <canvas baseChart width="400" height="400"
-                [datasets]="GiroXChartData"
+                [datasets]="AJA"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
@@ -15,143 +22,3 @@
                 (chartClick)="chartClicked($event)"></canvas>
     </div>
   </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="GiroYChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="GiroZChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-<!--
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="AcelChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
--->
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="THXChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="THYChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>
-
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="THZChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="flex-item">
-  </div>
-</div>

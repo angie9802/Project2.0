@@ -16,16 +16,25 @@ export class FislineChartComponent implements OnInit {
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserFisio/';
   userID : string = '1';
-  ac_x : number[];
-  ac_y : number[];
-  ac_z : number[];
+  chartE : string ;
+  results: Observable<any>;
   gi_x : number[];
   gi_y : number[];
   gi_z : number[];
   th_x : number[];
   th_y : number[];
   th_z : number[];
+  modAC : number[];
   fecha : string[];
+  CHARTT ;
+
+ 
+  myList = [
+    {id: 'some-id-1',
+    name:'Some name 1'},
+    {id: 'some-id-2',
+    name:'Some name 2'}
+    ];
 
   constructor(
     private http: HttpClient,
@@ -51,50 +60,37 @@ export class FislineChartComponent implements OnInit {
       console.log("Longitud: " + Object.keys(this.sensorData.Search).length);
 
       var lengthData = Object.keys(this.sensorData.Search).length;
-      var ac_x = new Array(lengthData);
-      var ac_y = new Array(lengthData);
-      var ac_z = new Array(lengthData);
       var gi_x = new Array(lengthData);
       var gi_y = new Array(lengthData);
       var gi_z = new Array(lengthData);
       var th_x = new Array(lengthData);
       var th_y = new Array(lengthData);
       var th_z = new Array(lengthData);
+      var modAC = new Array(lengthData);
       var fecha = new Array(lengthData);
 
       for (let i = 0; i < Object.keys(this.sensorData.Search).length; i++) {
         //var ikey:string = i.toString();
         var ikey= Object.keys(this.sensorData.Search)[i];
         fecha[i]=this.sensorData.Search[i].fecha.slice(0,10);
-        ac_x[i]=this.sensorData.Search[i].ac_x;
-        ac_y[i]=this.sensorData.Search[i].ac_y;
-        ac_z[i]=this.sensorData.Search[i].ac_z;
         gi_x[i]=this.sensorData.Search[i].gi_x;
         gi_y[i]=this.sensorData.Search[i].gi_y;
         gi_z[i]=this.sensorData.Search[i].gi_z;
         th_x[i]=this.sensorData.Search[i].th_x;
         th_y[i]=this.sensorData.Search[i].th_y;
         th_z[i]=this.sensorData.Search[i].th_z;
+        modAC[i]= ((this.sensorData.Search[i].th_x)^2 + (this.sensorData.Search[i].th_y)^2 + (this.sensorData.Search[i].th_z)^2 )^(1/2);
       }
       this.fecha = fecha;
-      this.ac_x = ac_x;
-      this.ac_y = ac_y;
-      this.ac_z = ac_z;
       this.gi_x = gi_x;
       this.gi_y = gi_y;
       this.gi_z = gi_z;
       this.th_x = th_x;
       this.th_y = th_y;
       this.th_z = th_z;
+      this.modAC = modAC;
 
-      this.lineChartData[0].data = this.th_x;
-      this.lineChartData[1].data = this.th_y;
-      this.lineChartData[2].data = this.th_z;
-      this.lineChartLabels = this.fecha;
-
-      this.AcelChartData[0].data = this.ac_x;
-      this.AcelChartData[1].data = this.ac_y;
-      this.AcelChartData[2].data = this.ac_z;
+      this.lineChartData[0].data = this.modAC;
 
       this.GiroXChartData[0].data = this.gi_x;
       this.GiroYChartData[0].data = this.gi_y;
@@ -103,12 +99,12 @@ export class FislineChartComponent implements OnInit {
       this.THXChartData[0].data = this.th_x;
       this.THYChartData[0].data = this.th_y;
       this.THZChartData[0].data = this.th_z;
+
+      this.lineChartLabels = this.fecha;
+      this.AJA = this.lineChartData;
     });
 
     console.log("extraído:");
-    console.log("ac_x:"+this.ac_x);
-    console.log("ac_y:"+this.ac_y);
-    console.log("ac_z:"+this.ac_z);
     console.log("gi_x:"+this.gi_x);
     console.log("gi_y:"+this.gi_y);
     console.log("gi_z:"+this.gi_z);
@@ -116,15 +112,7 @@ export class FislineChartComponent implements OnInit {
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_x' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_y' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'th_z' }
-  ];
-
-  public AcelChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_x' },
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_y' }, 
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'ac_z' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Movement Module' }
   ];
 
   public GiroXChartData: ChartDataSets[] = [
@@ -146,6 +134,9 @@ export class FislineChartComponent implements OnInit {
   public THZChartData: ChartDataSets[] = [
     { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_z' }
   ];
+
+  public AJA: ChartDataSets[]=[
+  { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_z' }];
   
 
 
@@ -266,4 +257,16 @@ export class FislineChartComponent implements OnInit {
   public changeLabel(): void {
     this.lineChartLabels[2] = ['1st Line', '2nd Line'];
   }
+  searchChanged() {
+    // Call our service function which returns an Observable
+    //this.results = this.th_x;
+    console.log(this.results);
+  }
+
+  public optionsFn(): void { //here item is an object 
+    console.log(this.CHARTT);
+ let item = this.CHARTT; // Just did this in order to avoid changing the next lines of code :P
+    this.AJA=item;
+  }
+
 }

@@ -24,4 +24,6 @@ import { ChartsModule } from 'ng2-charts';
   ],
   bootstrap: [FislineChartComponent]
 })
-export class DataFisioPageModule {}
+export class DataFisioPageModule {
+
+}

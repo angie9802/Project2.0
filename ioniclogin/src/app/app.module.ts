@@ -10,10 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { HttpModule } from '@angular/http';
 import {PostProvider } from '../providers/post-provider';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MachineIDService } from './machine-id.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
      BrowserModule,
      IonicModule.forRoot(), 
      AppRoutingModule,
-     HttpModule,
      HttpClientModule,
      IonicStorageModule.forRoot()
     ],
@@ -32,6 +31,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     PostProvider,
     SplashScreen,
     HttpClient,
+    MachineIDService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

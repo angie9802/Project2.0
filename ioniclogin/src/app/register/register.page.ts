@@ -69,34 +69,6 @@ export class RegisterPage implements OnInit {
       message: 'Registro exitoso.',
       duration: 2000
     });
-    
-    /*
-    let body = {
-    username : this.username,
-    password : this.password,
-    aksi: 'registro'
-    };
-
-    this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
-      var alertmsg = data.msg;
-      if (data.succes){
-        this.http.get(httpRegister);
-        console.log(httpRegister);
-        this.router.navigate(['/login']);
-        const toast = await this.toastCtrl.create({
-          message: 'Registro exitoso.',
-          duration: 2000
-        });
-        toast.present();
-      }else{
-        const toast = await this.toastCtrl.create({
-          message: alertmsg,
-          duration: 2000
-        });
-      }
-    }
-    );
-    */
   }
 }
 }

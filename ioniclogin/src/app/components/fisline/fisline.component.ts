@@ -77,7 +77,7 @@ export class FislineChartComponent implements OnInit {
         th_x[i]=this.sensorData.Search[i].th_x;
         th_y[i]=this.sensorData.Search[i].th_y;
         th_z[i]=this.sensorData.Search[i].th_z;
-        modAC[i]= ((this.sensorData.Search[i].th_x)^2 + (this.sensorData.Search[i].th_y)^2 + (this.sensorData.Search[i].th_z)^2 )^(1/2);
+        modAC[i]= this.sensorData.Search[i].mag_acel;;
       }
       this.fecha = fecha;
       this.gi_x = gi_x;
@@ -100,9 +100,10 @@ export class FislineChartComponent implements OnInit {
 
       this.lineChartLabels = this.fecha;
       this.AJA = this.lineChartData;
+ 
+      document.getElementById('fFIsio').innerHTML=fecha[lengthData-1];
+      document.getElementById('dFisio').innerHTML="M="+modAC[lengthData-1]+","+"Gx="+gi_x[lengthData-1]+"°"+"Gy="+gi_y[lengthData-1]+"°"+"Gz="+gi_z[lengthData-1]+"°";
 
-      document.getElementById('cont4').innerHTML=fecha[lengthData-1];
-      document.getElementById('cont3').innerHTML=modAC[lengthData-1]+"°";
 
     });
 
@@ -147,20 +148,28 @@ export class FislineChartComponent implements OnInit {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [
+        {
+          id: 'x-axis-0',
+          gridLines: {
+            color: 'rgba(2,3,1,0.4)',
+          },
+          ticks: {
+            fontColor: 'black',
+            fontSize: 15
+          }
+        }
+      ],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
-        },
-        {
-          id: 'y-axis-1',
-          position: 'right',
           gridLines: {
-            color: 'rgba(255,0,0,0.3)',
+            color: 'rgba(2,3,1,0.3)',
           },
           ticks: {
-            fontColor: 'red',
+            fontColor: 'black',
+            fontSize: 15
           }
         }
       ]
@@ -184,29 +193,13 @@ export class FislineChartComponent implements OnInit {
     },
   };
   public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
+    {
+      backgroundColor: 'rgba(20,102,20,0.3)',
+      borderColor: 'rgba(20,102,20,1)',
       pointBackgroundColor: 'rgba(77,83,96,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
   public lineChartLegend = true;

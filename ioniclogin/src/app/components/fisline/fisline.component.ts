@@ -100,6 +100,10 @@ export class FislineChartComponent implements OnInit {
 
       this.lineChartLabels = this.fecha;
       this.AJA = this.lineChartData;
+
+      document.getElementById('cont4').innerHTML=fecha[lengthData-1];
+      document.getElementById('cont3').innerHTML=modAC[lengthData-1]+"°";
+
     });
 
     console.log("extraído:");
@@ -134,7 +138,7 @@ export class FislineChartComponent implements OnInit {
   ];
 
   public AJA: ChartDataSets[]=[
-  { data: [6, 5, 8, 9, 5, 5, 4], label: 'THETA_z' }];
+  { data: [6, 5, 8, 9, 5, 5, 4], label: 'Chosee Graphics' }];
   
 
 

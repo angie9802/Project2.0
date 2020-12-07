@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit,Input, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import {ComApiService} from 'src/app/services/com-api.service';
 import { HttpClient } from '@angular/common/http';
+import { MachineIDService } from 'src/app/machine-id.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -11,23 +11,24 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./linea.component.scss']
 })
 export class LineChartComponent implements OnInit {
-  
+  @Input('machineID') machineID : string;
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
-  userID : string = '1';
+  //machineID : string = this.machineIDserv.machineID;
 
   constructor(
     private http: HttpClient,
-    private CApi: ComApiService
+    public machineIDserv: MachineIDService
   ) { }
   
   ngOnInit() {
-    this.getDataUser(this.userID);
+    this.getDataUser(this.machineID);
   }
 
-  getDataUser(IDuser : string){
+  getDataUser(machineID : string){
 
-    var urlData = this.url + '?s=' + IDuser;
+    var urlData = this.url + '?s=' + machineID;
+    console.log("temp: " + urlData);
     this.http.get(urlData)
     .subscribe(data=>{
       

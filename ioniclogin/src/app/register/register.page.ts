@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostProvider } from '../../providers/post-provider';
 import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,7 +23,6 @@ export class RegisterPage implements OnInit {
   ////////
   constructor(
     private router: Router,
-    private postPvdr: PostProvider,
     public toastCtrl: ToastController,
     private http: HttpClient
   ) { }

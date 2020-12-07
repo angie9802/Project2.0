@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'calendar1',
+    path: 'calendar1/:machineID',
     loadChildren: () => import('./calendar1/calendar1.module').then( m => m.Calendar1PageModule)
   },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'message',
+    path: 'message/:machineID',
     loadChildren: () => import('./message/message.module').then( m => m.MessagePageModule)
   },
   {
@@ -38,15 +38,15 @@ const routes: Routes = [
     loadChildren: () => import('./data/data.module').then( m => m.DataPageModule)
   },
   {
-    path: 'data-fisio',
+    path: 'data-fisio/:machineID',
     loadChildren: () => import('./data-fisio/data-fisio.module').then( m => m.DataFisioPageModule)
   },
   {
-    path: 'formula',
+    path: 'formula/:machineID',
     loadChildren: () => import('./formula/formula.module').then( m => m.FormulaPageModule)
   },
   {
-    path: 'data-fisio',
+    path: 'data-fisio/:machineID',
     loadChildren: () => import('./data-fisio/data-fisio.module').then( m => m.DataFisioPageModule)
   },
 

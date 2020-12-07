@@ -1,7 +1,7 @@
 import {ComApiService} from 'src/app/services/com-api.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-data-fisio',
@@ -10,18 +10,21 @@ import { Router } from '@angular/router';
 })
 export class DataFisioPage implements OnInit {
 
+  machineID: string ="";
   results: Observable<any>;
   searchTerm: string = '';
   constructor(
     private router: Router,
-    private CApi: ComApiService
+    private CApi: ComApiService,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.machineID = this.route.snapshot.paramMap.get('machineID');
   }
 
   back(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/'+this.machineID]);
   }
   searchChanged() {
     // Call our service function which returns an Observable

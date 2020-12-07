@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-message',
@@ -8,14 +8,17 @@ import { Router } from '@angular/router';
 })
 export class MessagePage implements OnInit {
 
+  machineID: string ="";
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.machineID = this.route.snapshot.paramMap.get('machineID');
   }
 
   back(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/'+this.machineID]);
   }
 }

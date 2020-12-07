@@ -3,7 +3,7 @@ import { CalendarComponent } from 'ionic2-calendar';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calendar1',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class Calendar1Page implements OnInit {
 
+  machineID: string ="";
   event = {
     title: '',
     desc: '',
@@ -31,20 +32,22 @@ export class Calendar1Page implements OnInit {
   };
  
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
- 
+  
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
+    private route: ActivatedRoute,
     @Inject(LOCALE_ID) private locale: string){ 
 
      }
  
   ngOnInit() {
+    this.machineID = this.route.snapshot.paramMap.get('machineID');
     this.resetEvent();
   }
   
   goBack(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/'+this.machineID]);
   }
   resetEvent() {
     this.event = {

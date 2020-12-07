@@ -26,11 +26,11 @@ export class HomePage implements OnInit {
   }
 
   goMessage(){
-    this.router.navigate(['/data-fisio']);
+    this.router.navigate(['/data-fisio/'+this.machineID]);
   }
 
   goCalendar(){
-    this.router.navigate(['/calendar1']);
+    this.router.navigate(['/calendar1/'+this.machineID]);
   }
 
   goData(){
@@ -38,10 +38,10 @@ export class HomePage implements OnInit {
   }
 
   goDataFisio(){
-    this.router.navigate(['/data-fisio']);
+    this.router.navigate(['/data-fisio/'+this.machineID]);
   }
 
   goFormula(){
-    this.router.navigate(['/formula']);
+    this.router.navigate(['/formula/'+this.machineID]);
   }
 }

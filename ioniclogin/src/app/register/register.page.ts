@@ -17,7 +17,7 @@ export class RegisterPage implements OnInit {
   email: string = "";
   password: string = "";
   confirm_password : string = "";
-  phone: number = 0;
+  phone: number;
   machineID: string = "";
 
   ////////

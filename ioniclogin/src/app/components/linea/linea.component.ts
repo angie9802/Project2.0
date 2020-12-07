@@ -45,7 +45,7 @@ export class LineChartComponent implements OnInit {
       this.lineChartData[0].data = temperatura;
       this.lineChartLabels = fecha;
       document.getElementById('cont1').innerHTML=fecha[lengthData-1];
-      document.getElementById('cont2').innerHTML=temperatura[lengthData-1]+"°C";
+      document.getElementById('cont2').innerHTML=temperatura[lengthData-1]+" °C";
     });
   }
 

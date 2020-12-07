@@ -46,7 +46,7 @@ export class OxigenoComponent implements OnInit {
       this.lineChartData[0].data = oxigeno;
       this.lineChartLabels = fecha;
       document.getElementById('cont6').innerHTML=fecha[lengthData-1];
-      document.getElementById('cont5').innerHTML=oxigeno[lengthData-1]+"%";
+      document.getElementById('cont5').innerHTML=oxigeno[lengthData-1]+" %";
     });
   }
 

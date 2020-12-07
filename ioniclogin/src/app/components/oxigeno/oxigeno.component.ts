@@ -15,7 +15,6 @@ export class OxigenoComponent implements OnInit {
   @Input('machineID') machineID : string;
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
-  //machineID : string = this.machineIDserv.machineID;
 
   constructor(
     private http: HttpClient,
@@ -46,6 +45,8 @@ export class OxigenoComponent implements OnInit {
 
       this.lineChartData[0].data = oxigeno;
       this.lineChartLabels = fecha;
+      document.getElementById('cont6').innerHTML=fecha[lengthData-1];
+      document.getElementById('cont5').innerHTML=oxigeno[lengthData-1]+"%";
     });
   }
 

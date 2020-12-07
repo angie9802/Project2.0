@@ -46,6 +46,8 @@ export class BpmComponent implements OnInit {
 
       this.lineChartData[0].data = bpm;
       this.lineChartLabels = fecha;
+      document.getElementById('cont4').innerHTML=fecha[lengthData-1];
+      document.getElementById('cont3').innerHTML=bpm[lengthData-1]+"bpm";
     });
   }
 

@@ -14,7 +14,6 @@ export class LineChartComponent implements OnInit {
   @Input('machineID') machineID : string;
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
-  //machineID : string = this.machineIDserv.machineID;
 
   constructor(
     private http: HttpClient,
@@ -46,6 +45,7 @@ export class LineChartComponent implements OnInit {
       this.lineChartData[0].data = temperatura;
       this.lineChartLabels = fecha;
       document.getElementById('cont1').innerHTML=fecha[lengthData-1];
+      document.getElementById('cont2').innerHTML=temperatura[lengthData-1]+"°C";
     });
   }
 

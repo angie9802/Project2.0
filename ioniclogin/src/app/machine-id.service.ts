@@ -5,5 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class MachineIDService {
 
+  public machineID: string = "";
+  public patientID: number;
+  
   constructor() { }
 }

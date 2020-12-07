@@ -18,6 +18,8 @@ export class RegisterPage implements OnInit {
   email: string = "";
   password: string = "";
   confirm_password : string = "";
+  phone: number = 0;
+  machineID: string = "";
 
   ////////
   constructor(
@@ -56,7 +58,7 @@ export class RegisterPage implements OnInit {
     }else{
 
     var httpRegister  = 'http://aulal.org:1880/RegisterUserHH?name='+this.username+'&password='+this.password
-    +'&firstName='+this.firstName+'&lastName='+this.lastName+'&email='+this.email;
+    +'&firstName='+this.firstName+'&lastName='+this.lastName+'&email='+this.email+'&machine_ID='+this.machineID+'&phone='+this.phone;
 
     this.http.get(httpRegister)
     .subscribe(data=>{

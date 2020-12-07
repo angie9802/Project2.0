@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +8,17 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
+  machineID: string ="";
+
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
+    this.machineID = this.route.snapshot.paramMap.get('machineID');
+    console.log(this.machineID);
   }
 
   back(){
@@ -29,7 +34,7 @@ export class HomePage implements OnInit {
   }
 
   goData(){
-    this.router.navigate(['/data']);
+    this.router.navigate(['/data/'+this.machineID]);
   }
 
   goDataFisio(){

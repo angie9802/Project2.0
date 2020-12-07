@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./comunicacion-api/comunicacion-api.module').then( m => m.ComunicacionApiPageModule)
   },
   {
-    path: 'home',
+    path: 'home/:machineID',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: () => import('./message/message.module').then( m => m.MessagePageModule)
   },
   {
-    path: 'data',
+    path: 'data/:machineID',
     loadChildren: () => import('./data/data.module').then( m => m.DataPageModule)
   },
   {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
@@ -12,10 +12,10 @@ import { MachineIDService } from 'src/app/machine-id.service';
 })
 
 export class OxigenoComponent implements OnInit {
-  
+  @Input('machineID') machineID : string;
   sensorData: any = [];
   url = 'http://aulal.org:1880/GetUserData/';
-  machineID : string = this.machineIDserv.machineID;
+  //machineID : string = this.machineIDserv.machineID;
 
   constructor(
     private http: HttpClient,

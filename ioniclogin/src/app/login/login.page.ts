@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
             this.machineIDserv.machineID = this.datosUsuarios[0].machine_ID;
             console.log("machineId= " + this.machineIDserv.machineID)
             this.machineIDserv.patientID = this.datosUsuarios[0].id;
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home/'+this.datosUsuarios[0].machine_ID]);
             const toast = await this.toastCtrl.create({
               message: 'Ingreso exitoso',
               duration: 2000

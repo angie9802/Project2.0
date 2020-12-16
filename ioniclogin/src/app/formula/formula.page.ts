@@ -12,7 +12,7 @@ import {ComApiService} from 'src/app/services/com-api.service';
 export class FormulaPage implements OnInit {
 
   results: Observable<any>;
-  userID;
+  userID: number;
   machineID: string ="";
   
   constructor(

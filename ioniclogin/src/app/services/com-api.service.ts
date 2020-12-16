@@ -13,7 +13,7 @@ export enum SearchType {
 export class ComApiService {
   url = 'http://aulal.org:1880/GetUserData/';
   urlF = 'http://aulal.org:1880/GetUserFisio/';
-  urlP = 'http://aulal.org:1880/GetFormulasHH/'
+  urlP = 'http://aulal.org:1880/GetFormulasHH/';
   apiKey = ''; // <-- Enter your own key here!
  
   /**

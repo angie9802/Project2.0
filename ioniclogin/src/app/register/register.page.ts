@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
 
   username: string = "";
   firstName: string = "";
@@ -20,55 +19,51 @@ export class RegisterPage implements OnInit {
   phone: number;
   machineID: string = "";
 
-  ////////
   constructor(
     private router: Router,
     public toastCtrl: ToastController,
     private http: HttpClient
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   back(){
     this.router.navigate(['/login']);
   }
-  //////
-  async prosesRegister(){
-    if(this.username==""){
-      const toast = await this.toastCtrl.create({
-        message: 'Se requiere nombre de usuario',
-        duration: 2000
-      });
-      toast.present();
-    }else if(this.password==""){
-      const toast = await this.toastCtrl.create({
-        message: 'Se requiere contraseña',
-        duration: 2000
-      });
-      toast.present();
 
+  async prosesRegister(){
+    if(this.username=="" || this.password=="" || this.firstName=="" || this.lastName==""
+    || this.email=="" || this.phone==null || this.machineID==""){
+      const toast = await this.toastCtrl.create({
+        message: 'please fill in all the fields',
+        duration: 2000
+      });
+      toast.present();
     }else if(this.password!=this.confirm_password){
       const toast = await this.toastCtrl.create({
-        message: 'Contraseña invalida',
+        message: 'password fields do not match',
         duration: 2000
       });
       toast.present();
     }else{
+    
+      let postData = {
+              "name": this.username,
+              "password": this.password,
+              "firstName": this.firstName,
+              "lastName": this.lastName,
+              "email": this.email,
+              "machine_ID": this.machineID,
+              "phone": this.phone
+      }
 
-    var httpRegister  = 'http://aulal.org:1880/RegisterUserHH?name='+this.username+'&password='+this.password
-    +'&firstName='+this.firstName+'&lastName='+this.lastName+'&email='+this.email+'&machine_ID='+this.machineID+'&phone='+this.phone;
+      this.http.post("http://aulal.org:1880/RegisterUserHH", postData).subscribe();
 
-    this.http.get(httpRegister)
-    .subscribe(data=>{
-      console.log(data);
-    });
-    console.log(httpRegister);
-
-    this.router.navigate(['/login']);
-    const toast = await this.toastCtrl.create({
-      message: 'Registro exitoso.',
-      duration: 2000
-    });
+      this.router.navigate(['/login']);
+      const toast = await this.toastCtrl.create({
+        message: 'Registro exitoso.',
+        duration: 2000
+      });
   }
 }
 }

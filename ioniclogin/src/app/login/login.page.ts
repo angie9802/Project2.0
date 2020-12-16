@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 
   async prosesLogin2(){
 
-    if(this.username!=""&&this.password!=""){
+    if(this.username!="" && this.password!=""){
 
       var httpLogin  = 'http://aulal.org:1880/GetUserHH?name='+this.username;
 

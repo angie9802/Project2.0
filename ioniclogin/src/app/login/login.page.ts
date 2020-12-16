@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { MachineIDService } from '../machine-id.service';
 
 @Component({
   selector: 'app-login',
@@ -12,19 +11,18 @@ import { MachineIDService } from '../machine-id.service';
 
 export class LoginPage implements OnInit {
 
-  username: string;
-  password: string;
-  datosUsuarios: any=[];
+  username: string = "";
+  password: string = "";
+  datosUsuario: any=[];
 
   constructor(
     private router: Router,
     private toastCtrl: ToastController,
-    private http: HttpClient,
-    public machineIDserv: MachineIDService
+    private http: HttpClient
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   formRegister(){
     this.router.navigate(['/register']);
   }
@@ -38,37 +36,26 @@ export class LoginPage implements OnInit {
       this.http.get(httpLogin)
       .subscribe(async data=>{
 
-        console.log("original:");
-        console.log(data);
-        this.datosUsuarios = data;
+        this.datosUsuario = data;
 
-        console.log("extraído:");
-        console.log(this.datosUsuarios);
-        console.log("Longitud: " + this.datosUsuarios.length);
-
-        if(this.datosUsuarios.length == 1){
-          console.log("password ingresada: "+this.password);
-          console.log("password correcta: "+this.datosUsuarios[0].password);
-          if(this.datosUsuarios[0].password == this.password){
-            this.machineIDserv.machineID = this.datosUsuarios[0].machine_ID;
-            console.log("machineId= " + this.machineIDserv.machineID)
-            this.machineIDserv.patientID = this.datosUsuarios[0].id;
-            this.router.navigate(['/home/'+this.datosUsuarios[0].machine_ID]);
+        if(this.datosUsuario.length == 1){
+          if(this.datosUsuario[0].password == this.password){
+            this.router.navigate(['/home/'+this.datosUsuario[0].machine_ID]);
             const toast = await this.toastCtrl.create({
-              message: 'Ingreso exitoso',
+              message: 'Successful entry',
               duration: 2000
             });
             toast.present();
           }else{
             const toast = await this.toastCtrl.create({
-              message: 'Contraseña errónea',
+              message: 'Wrong password',
               duration: 2000
             });
             toast.present();
           }
         }else{
           const toast = await this.toastCtrl.create({
-            message: 'Nombre de usuario no existe',
+            message: 'Username does not exist',
             duration: 2000
           });
           toast.present();
@@ -78,7 +65,7 @@ export class LoginPage implements OnInit {
       
     }else{
       const toast = await this.toastCtrl.create({
-        message: 'No ha ingresado el usario o la contraseña',
+        message: 'You have not entered the username or password',
         duration: 2000
       });
       toast.present();
